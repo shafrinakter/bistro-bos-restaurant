@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.config";
-import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 
 
 export const AuthContext = createContext(null)
@@ -10,36 +10,37 @@ const AuthProviders = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     // create user
-    const createUser =async (email, password) => {
+    const createUser = async (email, password) => {
         setLoading(true)
-        const result= await createUserWithEmailAndPassword(auth, email, password);
+        const result = await createUserWithEmailAndPassword(auth, email, password);
+        
         return result
 
     }
 
     // update profile
-    const updateUser = (name,photo)=>{
+    const updateUser = (name, photo) => {
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo
-          })
+        })
     }
 
     // login
-    const logIn = (email,password)=>{
+    const logIn = (email, password) => {
         setLoading(true)
-        return signInWithEmailAndPassword(auth,email,password)
+        return signInWithEmailAndPassword(auth, email, password)
     }
 
     // google
-    const googleSingIn = ()=>{
+    const googleSingIn = () => {
         setLoading(true)
         const provider = new GoogleAuthProvider()
-        return signInWithPopup (auth, provider)
+        return signInWithPopup(auth, provider)
     }
 
 
     // singOut
-    const logOut = ()=>{
+    const logOut = () => {
         setLoading(true)
         return signOut(auth)
     }
