@@ -10,6 +10,7 @@ import Login from "../page/Login/Login";
 import SingUp from "../page/singUp/SingUp";
 import Dashboard from "../layout/Dashboard";
 import Cart from "../page/dashboard/cart/Cart";
+import AllUser from "../page/dashboard/admin/allUsers/AllUser";
 
 
 
@@ -62,6 +63,16 @@ export  const router = createBrowserRouter([
             {
                 path:'cart',
                 element:<Cart></Cart>
+            },
+            // Addmin routers
+            {
+                path: '/dashboard/users',
+                element:<AllUser></AllUser>
+            },
+
+            {
+                path: 'dashboard/',
+                element:<AllUser></AllUser>
             }
         ]
     }
